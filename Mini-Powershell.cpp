@@ -2,13 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <windows.h>  // Windows-specific headers
-#include <process.h>  // For _spawnvp instead of fork and execvp
+#include <process.h>  
 
 #define MAX_COMMAND_LENGTH 1024
 #define MAX_ARGS 64
 #define DELIMITERS " \t\r\n\a"
 
-// Function to read a line of input from the user
 char *read_line() {
     char *line = (char *)malloc(MAX_COMMAND_LENGTH); // Casting malloc to char*
     if (!line) {
@@ -55,14 +54,11 @@ char **split_line(char *line) {
     return tokens;
 }
 
-// Function to execute the command
 void execute(char **args) {
     if (args[0] == NULL) {
-        // An empty command was entered
         return;
     }
 
-    // Create a new process
     intptr_t pid = _spawnvp(_P_WAIT, args[0], args); // Synchronous execution
     if (pid == -1) {
         perror("Vivek's Power-shell"); // If _spawnvp fails
@@ -87,4 +83,5 @@ int main() {
 
     return 0;
 }
+
 
