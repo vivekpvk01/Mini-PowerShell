@@ -22,7 +22,6 @@ char *read_line() {
     return line;
 }
 
-// Function to split a line into tokens (command and arguments)
 char **split_line(char *line) {
     int bufsize = MAX_ARGS;
     char **tokens = (char **)malloc(bufsize * sizeof(char *)); // Casting malloc to char**
@@ -83,5 +82,6 @@ int main() {
 
     return 0;
 }
+
 
 
